@@ -1,6 +1,6 @@
 vpath %.c ./src
 vpath %.h ./inc
-vpath %.d ./dependancy
+
 CC = gcc_S
 SRC_PATH = ./src/
 LINK_TARGET = app.exe
