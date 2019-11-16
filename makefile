@@ -5,9 +5,15 @@ CC = gcc_S
 SRC_PATH = ./src/
 LINK_TARGET = app.exe
 INCLUDE_PATH = ./inc/
+SRCS = main.c LCD.c DIO.c code.c
 OBJ = main.o LCD.o DIO.o code.o
 CLEAN_TARGET = $(LINK_TARGET) $(OBJ)
 
+%.o : %.c
+	@$(MAKEDEPEND)
+	$(COMPILE.c) -o $@ $<
+
+include $(wildcard $(SRCS:.c=.d))
 
 
 all: $(LINK_TARGET)
@@ -31,5 +37,5 @@ $(LINK_TARGET): $(OBJ)
 		
 .PHONY: clean	
 clean:
-	-rm -rf *.o $(CLEAN_TARGET)
+	-rm -rf *.o *.d $(CLEAN_TARGET)
 	echo Cleaning done !
